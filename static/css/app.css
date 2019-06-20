@@ -1,0 +1,621 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "微软雅黑" !important;
+  background-color: #f2f2f2;
+  min-height: 100%;
+}
+a,
+a:hover {
+  text-decoration: none;
+}
+ul,
+ol {
+  list-style-type: none;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+/*公用样式结束*/
+html {
+  font-size: 625%;
+  /*初始化100px*/
+}
+/*rem初始*/
+.bg {
+  height: 7.08rem;
+  width: 100%;
+  background: url(../img/app/bg.png) no-repeat top center / cover;
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  /* z-index: -1; */
+}
+.phone_main .tit {
+  height: 1.8rem;
+  /* padding-top: .27rem; */
+  line-height: 1.8rem;
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.phone_main .tit .goback {
+  margin-left: .45rem;
+  width: .22rem;
+  height: 1.8rem;
+  display: block;
+  background: url(../img/app/goback.png) no-repeat center / 100% auto;
+  /* float: left; */
+  /* position: absolute; */
+  /* top: .27rem; */
+  /* left: 0; */
+  flex: 0 0 auto;
+}
+.sort_box{
+  flex: 1;
+}
+.phone_main .tit p {
+  font-size: .54rem;
+  color: #fff;
+  flex: 1;
+  align-self: center;
+  /* margin-left: -.65rem; */
+  /* width: 100vw; */
+  margin: 0;
+}
+.phone_main .tit .add_btn {
+  line-height: 1.8rem;
+  color: #fff;
+  position: absolute;
+  top: .27rem;
+  right: .3rem;
+  font-size: .36rem;
+}
+.phone_main .user_info {
+  padding: 0 .55rem;
+  height: 2.5rem;
+  margin-bottom: .67rem;
+}
+.phone_main .user_info .pic {
+  height: 2.5rem;
+  width: 2.5rem;
+  overflow: hidden;
+  border-radius: 2.5rem;
+  box-shadow: 0 0 25px 2px #af122d;
+  float: left;
+  border: .04rem solid #fff;
+}
+.phone_main .user_info .txt {
+  color: #fff;
+  font-size: .36rem;
+  padding-left: 3rem;
+  height: 2.5rem;
+  padding-top: .26rem;
+}
+.phone_main .user_info .txt .name {
+  line-height: .8rem;
+  height: .8rem;
+  font-size: .54rem;
+  margin-bottom: .18rem;
+}
+.phone_main .user_info .txt .name .set_btn {
+  height: .8rem;
+  width: .48rem;
+  display: inline-block;
+  float: right;
+  background: url(../img/app/set.png) no-repeat center / 100% auto;
+  margin-right: .2rem;
+}
+.phone_main .user_info .txt p {
+  line-height: .6rem;
+  font-size: .36rem;
+}
+.phone_main .user_list {
+  padding: 0 .33rem;
+}
+.phone_main .user_list .user_item {
+  border-radius: .25rem;
+  background-color: #fff;
+  padding: .15rem .46rem;
+}
+.phone_main .user_list .user_item p {
+  height: 1.4rem;
+  line-height: 1.4rem;
+}
+.phone_main .user_list .user_item p span {
+  display: block;
+  float: left;
+}
+.phone_main .user_list .user_item p span.icon {
+  margin-left: .25rem;
+  width: .5rem;
+  height: 1.4rem;
+  background: url(../img/app/icon2.png) no-repeat center / 100% auto;
+}
+.phone_main .user_list .user_item p span.num {
+  float: right;
+  width: .5rem;
+  height: .5rem;
+  background-color: #cc0e31;
+  border-radius: .5rem;
+  color: #fff;
+  text-align: center;
+  line-height: .5rem;
+  margin-top: .45rem;
+  font-size: .28rem;
+}
+.phone_main .user_list .user_item p span.more {
+  float: right;
+  width: .19rem;
+  height: 1.4rem;
+  background: url(../img/app/more.png) no-repeat center / 100% auto;
+  margin: 0 .3rem;
+}
+.phone_main .user_list .user_item p strong {
+  font-size: .44rem;
+  height: 1.4rem;
+  float: left;
+  color: #333;
+  padding-left: .4rem;
+}
+.phone_main .user_list .user_item p:first-child .icon {
+  background: url(../img/app/icon1.png) no-repeat center / 100% auto;
+}
+.phone_main .user_list .user_item p + p {
+  border-top: .01rem solid #e6e6e6;
+}
+.phone_main .user_list ul {
+  border-radius: .25rem;
+  background-color: #fff;
+  margin-top: .4rem;
+  padding: 0 .46rem .2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* align-items: unset; */
+}
+.phone_main .user_list ul li {
+  height: 1.9rem;
+  border-top: .01rem solid #e6e6e6;
+}
+.phone_main .user_list ul li a {
+  display: block;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.phone_main .user_list ul li a .txt {
+  /* padding-top: .29rem; */
+  font-size: .46rem;
+  /* width: 80%; */
+  /* float: left; */
+  display: flex;
+  flex-direction: column;
+}
+.phone_main .user_list ul li a .txt p {
+  /* margin-top: .29rem; */
+  color: #333;
+  /* line-height: .67rem; */
+  margin: auto 0;
+}
+.phone_main .user_list ul li a .txt h6 {
+  color: #808080;
+  /* line-height: .67rem; */
+}
+.phone_main .user_list ul li a .state {
+  width: 1.22rem;
+  /* float: right; */
+  font-size: .48rem;
+  color: #cc0e31;
+  font-weight: bold;
+  line-height: 1.7rem;
+}
+.phone_main .user_list ul .title {
+  line-height: 1.29rem;
+  color: #333;
+  font-size: .44rem;
+  font-weight: bold;
+  height: auto;
+}
+.phone_main .user_list ul .title span.more {
+  float: right;
+  display: block;
+  width: .19rem;
+  height: 1.4rem;
+  background: url(../img/app/more.png) no-repeat center / 100% auto;
+  margin: 0 .3rem;
+}
+.phone_main .issue {
+  padding: 0 .33rem;
+}
+.phone_main .issue .info {
+  border-radius: .25rem;
+  background-color: #fff;
+  padding: .2rem .8rem;
+  margin-bottom: .6rem;
+}
+.phone_main .issue .info h2 {
+  font-size: .54rem;
+  line-height: .65rem;
+  text-align: center;
+  margin-top: .25rem;
+}
+.phone_main .issue .info span {
+  font-size: .42rem;
+  color: #666;
+  line-height: .9rem;
+  text-align: center;
+  display: block;
+  height: 1rem;
+  border-bottom: .01rem solid #e6e6e6;
+}
+.phone_main .issue .info p {
+  font-size: .38rem;
+  color: #666;
+  margin-top: .32rem;
+  line-height: .7rem;
+  margin-bottom: .12rem;
+}
+.phone_main .issue ul {
+  border-radius: .25rem;
+  background-color: #fff;
+  padding-left: 1.08rem;
+  padding-right: .48rem;
+  font-size: .5rem;
+  position: relative;
+}
+.phone_main .issue ul p {
+  line-height: 1.29rem;
+  font-weight: bold;
+  position: relative;
+  margin: 0;
+}
+.phone_main .issue ul p em {
+  position: absolute;
+  top: 0;
+  left: -0.58rem;
+  height: .83rem;
+  width: .34rem;
+  display: block;
+  background: #ffffff url(../img/app/icon3.jpg) no-repeat bottom center / 100% auto;
+  z-index: 2;
+}
+.phone_main .issue ul p .add {
+  width: .64rem;
+  height: .64rem;
+  background: #ffffff url(../img/app/add.jpg) no-repeat center / cover;
+  display: block;
+  float: right;
+  margin-top: .32rem;
+}
+.phone_main .issue ul li {
+  padding: 10px 0;
+  border-top: .01rem solid #e6e6e6;
+  position: relative;
+  /* display: flex; */
+  /* text-align: right; */
+}
+.phone_main .issue ul li > span.title{
+  /* text-align: left; */
+  /* display: table; */
+}
+.phone_main .issue ul li > span.call {
+  float: right;
+  color: #cc0e31;
+  word-break: keep-all;
+  /* text-align: right; */
+  /* display: inline-block; */
+  /* text-align: right; */
+  /* width: 100%; */
+  /* align-self: flex-end; */
+  /* position: absolute; */
+  /* right: 0; */
+}
+.phone_main .issue ul li em {
+    position: absolute;
+    top: 50%;
+    margin-top: -0.08rem;
+    left: -0.5rem;
+    height: .16rem;
+    width: .16rem;
+    display: block;
+    background-color: #cc0e31;
+    border-radius: .16rem;
+    z-index: 2;
+}
+.phone_main .issue ul li.active {
+  color: #cc0e31;
+}
+.phone_main .issue ul li.active em {
+  background: url(../img/app/icon4.jpg) no-repeat center / 100% auto;
+  width: .56rem;
+  height: .56rem;
+  margin-top: -0.28rem;
+  left: -0.7rem;
+}
+.phone_main .issue ul li.call em {
+  background: url(../img/app/call.png) no-repeat center / 100% auto;
+  width: .56rem;
+  height: .56rem;
+  margin-top: -0.28rem;
+  left: -0.7rem;
+}
+.phone_main .issue ul .lines {
+  width: .03rem;
+  height: 100%;
+  background-color: #e6e6e6;
+  position: absolute;
+  top: 0;
+  left: .64rem;
+}
+.phone_main .issue ul.personnel li em {
+  top: .44rem;
+  margin-top: 0;
+}
+.phone_main .issue ul.personnel li .txt {
+  float: left;
+  width: 80%;
+  line-height: .6rem;
+  padding-top: .2rem;
+}
+.phone_main .issue ul.personnel li .txt h6 {
+  font-size: .46rem;
+  font-weight: normal;
+}
+.phone_main .issue ul.personnel li .txt h6 span {
+  color: #666;
+  padding-left: .1rem;
+  font-size: .4rem;
+}
+.phone_main .issue ul.personnel li .txt > span {
+  font-size: .36rem;
+  color: #666;
+}
+.phone_main .issue textarea {
+  margin-top: .3rem;
+  border-radius: .25rem;
+  background-color: #fff;
+  width: 100%;
+  height: 2.4rem;
+  border: 0;
+  padding: .4rem;
+  box-sizing: border-box;
+  font-size: .4rem;
+  font-family: '微软雅黑';
+}
+.phone_main .issue input[type="button"] {
+  width: 4.9rem;
+  height: 1.2rem;
+  text-align: center;
+  color: #fff;
+  font-size: .48rem;
+  border: 0;
+  float: left;
+  border-radius: .08rem;
+  font-weight: bold;
+  background-color: #cccccc;
+}
+.phone_main .issue input[type="submit"] {
+  width: 4.9rem;
+  height: 1.2rem;
+  text-align: center;
+  color: #fff;
+  font-size: .48rem;
+  border: 0;
+  float: right;
+  border-radius: .08rem;
+  font-weight: bold;
+  background-color: #cc0e31;
+}
+.phone_main .issue .check_box {
+  border-radius: .25rem;
+  background-color: #fff;
+  margin-bottom: .3rem;
+  padding: .38rem;
+  line-height: .8rem;
+  font-size: .36rem;
+}
+.phone_main .issue .check_box form {
+  width: 7.4rem;
+  float: right;
+}
+.phone_main .issue .check_box form label {
+  width: 1.8rem;
+  float: left;
+  display: block;
+}
+.phone_main .issue .check_box form label input {
+  position: relative;
+  top: .08rem;
+  margin-right: .08rem;
+}
+.phone_main .normal_list {
+  background-color: #f2f2f2;
+  padding: .3rem;
+  min-height: 6rem;
+}
+.phone_main .normal_list ul li {
+  /* height: 1.9rem; */
+  background-color: #fff;
+  border-radius: .1rem;
+  font-size: .46rem;
+  /* line-height: .66rem; */
+  padding: .25rem .25rem;
+  box-sizing: border-box;
+}
+.phone_main .normal_list ul li a {
+  display: block;
+  height: 100%;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+.phone_main .normal_list ul li a .txt {
+  /* width: 90%; */
+  float: left;
+  box-sizing: border-box;
+  /* line-height: .66rem; */
+  /* padding: 12px 0; */
+  flex: 1;
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+.phone_main .normal_list ul li a .txt p {
+  color: #808080;
+  font-size: .42rem;
+  height: .66rem;
+  overflow: hidden;
+  margin: 5px 0 0 0;
+}
+.phone_main .normal_list ul li a .txt p strong {
+  color: #808080;
+  font-size: .36rem;
+  font-weight: normal;
+  background: url(../img/app/icon6.jpg) no-repeat left center / auto 75%;
+  padding-left: .48rem;
+  padding-right: .2rem;
+}
+.phone_main .normal_list ul li a .txt p strong + strong {
+  background: url(../img/app/icon5.jpg) no-repeat left center / auto 80%;
+}
+.phone_main .normal_list ul li a .txt .spot {
+  width: .16rem;
+  height: .16rem;
+  background-color: #cc0e31;
+  display: inline-block;
+  border-radius: .16rem;
+  margin-right: .23rem;
+  position: relative;
+  top: -0.03rem;
+}
+.phone_main .normal_list ul li a .txt .tel {
+  font-size: .4rem;
+  color: #999999;
+  padding-left: .3rem;
+  font-style: normal;
+}
+.phone_main .normal_list ul li a > span.more {
+  width: .3rem;
+  display: block;
+  /* float: right; */
+  height: 100%;
+  background: url(../img/app/more.png) no-repeat center / 100% auto;
+  flex: 0 0 auto;
+}
+.phone_main .normal_list ul li a > span.state {
+  line-height: 1.32rem;
+  height: 1.32rem;
+  display: block;
+  float: right;
+  width: 10%;
+  text-align: right;
+  font-weight: bold;
+  color: #cc0e31;
+}
+.phone_main .normal_list ul li a > span.set {
+  line-height: 1.32rem;
+  height: 1.32rem;
+  display: block;
+  float: right;
+  width: 10%;
+  text-align: right;
+  color: #999;
+}
+.phone_main .normal_list ul li + li {
+  margin-top: .3rem;
+}
+.phone_main .search_box {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  background-color: #fff;
+  padding: 0 .3rem;
+  font-size: .36rem;
+  color: #808080;
+  /* flex: 1; */
+  display: flex;
+  align-items: center;
+}
+.phone_main .search_box span {
+  display: inline-block;
+  color: #333;
+  padding: 0 .1rem;
+}
+.phone_main .search_box span.active {
+  color: #ae0c2a;
+}
+.phone_main .search_box .form_box {
+  /* float: right; */
+  /* width: 4.07rem; */
+  height: 0.86rem;
+  box-sizing: border-box;
+  border: .02rem solid #e6e6e6;
+  /* margin-top: .25rem; */
+  /* border-radius: .08rem; */
+  flex: 1;
+  /* display: flex; */
+  /* flex-grow: 0; */
+  /* flex-shrink: 0; */
+}
+.form_box .search{
+  display: flex;
+  flex-grow: 0;
+  flex-basis: auto;
+  justify-content: space-between;
+}
+.phone_main .search_box .form_box input[type="text"] {
+  height: .78rem;
+  /* line-height: .64rem; */
+  border: 0;
+  /* min-width: 3rem; */
+  width: 3rem;
+  /* float: left; */
+  padding: 0 .18rem;
+  box-sizing: border-box;
+  color: #000;
+  font-size: .32rem;
+  outline: none;
+  flex: 1;
+  /* flex:  0 1 auto; */
+}
+.phone_main .search_box .form_box .search_icon {
+  height: .77rem;
+  width: .64rem;
+  border: 0;
+  /* float: left; */
+  background: #ffffff url(../img/app/search.jpg) no-repeat center / 60%;
+  flex: 0 0 auto;
+}
+.meeting-list{
+  display: flex;
+  flex-direction: column;
+}
+.none-issue{
+    margin-top: 3rem;
+    text-align: center;
+    font-size: .35rem;
+}
+.none-meeting{
+  text-align: center;
+  font-size: .35rem;
+  margin-top: 1.2rem;
+}
+.header-actions{
+  width: .22rem;
+  flex: 0 0 auto;
+  margin-right: .45rem;
+}
