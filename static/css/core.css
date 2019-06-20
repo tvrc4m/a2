@@ -107,7 +107,7 @@ a:focus {
   padding: 20px 30px;
   position: absolute;
   right: 0px;
-  left: 220px;
+  left: 240px;
   font-size: 13px;
 }
 #wrapper {
@@ -340,7 +340,7 @@ a:focus {
 }
 /* Card Box */
 .card-box {
-  padding: 10px;
+  padding: 10px 10px 20px 10px;
   border: 1px solid rgba(54, 64, 74, 0.05);
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -1117,7 +1117,7 @@ pre {
 .topbar .topbar-left {
   float: left;
   position: relative;
-  width: 220px;
+  width: 240px;
   z-index: 1;
 }
 .topbar .topbar-left-sm {
@@ -1276,7 +1276,7 @@ pre {
 .side-menu {
   bottom: 0;
   top: 0;
-  width: 220px;
+  width: 240px;
   z-index: 2;
 }
 .side-menu.left {
@@ -1294,7 +1294,7 @@ body.fixed-left .side-menu.left {
   position: fixed;
 }
 .content-page {
-  margin-left: 220px;
+  margin-left: 240px;
   overflow: hidden;
 }
 .content-page > .content {
@@ -1441,6 +1441,9 @@ body.fixed-left .side-menu.left {
   background: #313a43 !important;
   border-left: 3px solid #5fbeaa;
   color: #5fbeaa !important;
+  /*border-left: 3px solid #ae0c2a;
+  color: #fff !important;
+  background: #292121 !important;*/
 }
 .menu-title {
   padding: 12px 20px !important;
@@ -1504,7 +1507,7 @@ body.fixed-left .side-menu.left {
   margin-top: -5px;
   padding-top: 5px;
   z-index: 9999;
-  background: #36404a !important;
+  background: #292121 !important;
 }
 #wrapper.enlarged .left.side-menu {
   width: 70px;
@@ -1552,7 +1555,6 @@ body.fixed-left .side-menu.left {
   width: 190px;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu ul > li:hover > ul a {
-  background: #36404a !important;
   box-shadow: none;
   padding-left: 15px;
   position: relative;
@@ -1594,6 +1596,9 @@ body.fixed-left .side-menu.left {
   margin-top: -36px;
   position: absolute;
   width: 190px;
+}
+#wrapper.enlarged .left.side-menu #sidebar-menu ul ul li:hover > ul li a{
+  background-color: #333;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu ul ul li > a span.pull-right {
   -ms-transform: rotate(270deg);
@@ -1690,7 +1695,7 @@ body.fixed-left .side-menu.left {
   overflow-y: auto;
   position: fixed;
   transition: all 200ms ease-out;
-  width: 220px;
+  width: 240px;
 }
 .right-bar {
   background: #ffffff !important;
@@ -2208,4 +2213,66 @@ body.fixed-left .side-menu.left {
 *.required:before{
   content:"*";
   color:#B0171F;
+}
+
+/* 2019.6.13update */
+#sidebar-menu .subdrop,#wrapper.enlarged .left.side-menu #sidebar-menu a.subdrop{
+  color: #fff !important;
+}
+.side-menu.left{
+  background-color: #333232;
+}
+
+#sidebar-menu > ul > li > a:hover{
+  color: #fff;
+}
+#sidebar-menu ul ul a.active,#wrapper.enlarged .left.side-menu #sidebar-menu ul > li:hover > a{
+  border-left: 3px solid #ae0c2a;
+  color: #fff !important;
+  background: #292121 !important;
+}
+.button-menu-mobile:hover{
+  color: #ae0c2a;
+}
+#sidebar-menu{
+  padding-top: 0;
+}
+.logo{
+  text-align: center;
+}
+.ruc_logo{
+  background: #ae0c2a url(../img/app/ruc.jpg) no-repeat left 38px center/62%;
+  height: 60px;
+}
+.enlarged .logo{
+  display: none;
+}
+.enlarged #sidebar-menu{
+  padding-top: 30px;
+}
+.enlarged .ruc_logo{
+  background: #ae0c2a url(../img/app/ruclogo.jpg) no-repeat center;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.nav-pills li.active a,.nav-pills li.active a:hover,.nav-pills li.active a:focus{
+  background-color: #ae0c2a !important;
+}
+.btn-group-xs>.btn, .btn-xs{
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+.btn-primary+.btn-primary{
+  background-color: #ffb03e !important;
+  border: 1px solid #ffb03e !important;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #409EFF;
+    border-color: #409EFF;
 }

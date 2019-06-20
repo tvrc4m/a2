@@ -25,7 +25,9 @@
                                     <td>{{news.title}}</td>
                                     <td>{{news.source}}</td>
                                     <td></td>
-                                    <td>{{news.createtime}}</td>
+                                    <td>
+                                        <iswitch :value="news.status" @change="changeStatus(news,$event)"></iswitch>
+                                    </td>
                                     <td>{{news.createtime | dateFormat}}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary btn-xs waves-effect waves-light m-r-10" @click="editNews(news)">编辑</button>
@@ -48,7 +50,7 @@
     import page_mixin from '@/mixins/page'
     import tableLoading from '@/components/loading/table'
     import loading_mixin from '@/mixins/loading'
-    import { getNewsList,delNews } from '@/api/news'
+    import { getNewsList,delNews,updateNewsStatus } from '@/api/news'
     export default {
         name:"NewsList",
         components:{
@@ -129,6 +131,13 @@
                         this.data=this.data.filter(item=>item.id!=news.id)
                     })
                 })
+            },
+            changeStatus(news,status){
+                if(status==1){
+                    updateNewsStatus(news.id, 1)
+                }else{
+                    updateNewsStatus(news.id, 0)
+                }
             },
             changePage(page){
                 this.params.page=page

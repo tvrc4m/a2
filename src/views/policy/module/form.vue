@@ -10,9 +10,9 @@
             <form class="form-horizontal" role="form">
                 <iform type="text" label="模块名" placeholder="请输入模块名" :value.sync="module.name" required></iform>
                 <iform type="text" label="排序" placeholder="请输入排序" :value.sync="module.sort"></iform>
-                <iform type="upload" label="上传头像" @change-file="uploadImg" :btnSize="11" :small="true" :url="module.img"></iform>
+                <iform type="upload" label="上传头像" required @change-file="uploadImg" :btnSize="11" :small="true" :url="module.img"></iform>
                 <iform type="switch" label="状态" :value.sync="module.status"></iform>
-                <iform type="confirm" @submit="updateUser"></iform>
+                <iform type="confirm" @submit="updateModule"></iform>
             </form>
         </div>
     </div>
@@ -24,7 +24,7 @@
     import { assertEmpty,assertNumber,assertLength,assertEmail,assertPhone } from '@/utils/validate'
     import { uploadImage,getImageUrl } from '@/api/upload'
     export default {
-        name:"AdminUserForm",
+        name:"PolicyModuleForm",
         components:{
             iform,
             breadcrumb
@@ -39,38 +39,29 @@
         },
         methods:{
             uploadImg(file){
-                uploadImage(file).then(data=>{
-                    this.$set(this.module, 'img', data.code)
+                uploadImage(file, "module").then(data=>{
+                    this.$set(this.module, 'img', data.url)
                 })
             },
-            updateUser(){
-                if(!assertEmpty(this.module.realname)){
-                    this.$message.error("请选择姓名")
+            updateModule(){
+                if(!assertEmpty(this.module.name)){
+                    this.$message.error("请输入模块名称")
                     return false
                 }
                 
-                if(!assertEmpty(this.module.job)){
-                    this.$message.error("请输入职务")
+                if(!assertEmpty(this.module.img)){
+                    this.$message.error("请上传模块图片")
                     return false
                 }
-                if(!assertEmpty(this.module.phone)){
-                    this.$message.error("请输入手机号")
-                    return false
-                }
-                if(!assertPhone(this.module.phone)){
-                    this.$message.error("手机号不正确")
-                    return false
-                }
-                this.module.stype = 2
                 if(this.add){
                     addModule(this.module).then(data=>{
                         this.$message.success("添加成功")
-                        this.$router.push({name:"leader"})
+                        this.$router.push({name:"policy_module"})
                     })
                 }else{
                     editModule(this.module.id,this.module).then(()=>{
                         this.$message.success("编辑成功")
-                        this.$router.push({name:"leader"})
+                        this.$router.push({name:"policy_module"})
                     })
                 }
                 console.log(this.module)

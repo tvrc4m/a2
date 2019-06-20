@@ -1,7 +1,7 @@
 import Message from 'vue-multiple-message'
 
 export function assertEmpty(value){
-    if(value==null) return true;
+    if(value==null) return false;
     return !!value
 }
 

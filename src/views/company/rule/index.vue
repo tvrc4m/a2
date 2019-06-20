@@ -23,6 +23,7 @@
                                     <td>{{rule.remark}}</td>
                                     <td>{{rule.createtime | dateFormat}}</td>
                                     <td>
+                                        <button type="button" class="btn btn-white btn-xs waves-effect waves-light m-r-10" @click="setRule(rule)">配置规则</button>
                                         <button type="button" class="btn btn-primary btn-xs waves-effect waves-light m-r-10" @click="editRule(rule)">编辑</button>
                                         <button type="button" class="btn btn-danger btn-xs waves-effect waves-light m-r-10" @click="doDel(rule)">删除</button>
                                     </td>
@@ -111,6 +112,9 @@
                         this.data=this.data.filter(item=>item.id!=rule.id)
                     })
                 })
+            },
+            setRule(rule){
+                this.$router.push({name:"company_rule_permission",params:{cid:this.company_id,id:rule.id}})
             },
             changePage(page){
                 this.params.page=page

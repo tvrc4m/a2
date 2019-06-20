@@ -1,7 +1,9 @@
 <template>
     <div class="left side-menu">
-        <div class="sidebar-inner slimscrollleft">
+
+        <div class="sidebar-inner slimscrollleft" :class="{'mini-side-menu':minibar}">
             <!--- Divider -->
+
             <div id="sidebar-menu">
                 <!-- <li class="text-muted menu-title">导航</li> -->
                 <ul style="z-index: 999999;">

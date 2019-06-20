@@ -27,8 +27,8 @@ export function addCompany(company){
     return req.post(`/admin/company`,company)
 }
 
-export function editCompany(company){
-    return req.put(`/admin/company/${company.id}`,company)
+export function editCompany(company_id, company){
+    return req.put(`/admin/company/${company_id}`,company)
 }
 
 export function delCompany(company_id){

@@ -10,36 +10,7 @@
             <div class="col-sm-12">
                 <div class="card-box">
                     <div class="table-responsive">
-                        <table class="table m-0 table-striped table-bordered dataTable no-footer">
-                            <thead>
-                                <tr>
-                                    <th v-for="(header,index) in headers" :key="index">{{header.label}}</th>
-                                </tr>
-                            </thead>
-                            <tbody v-if="data.length">
-                                <tr v-for="(user,index) in data" :key="index">
-                                    <td>{{user.id}}</td>
-                                    <td>{{user.phone}}</td>
-                                    <td>{{user.realname}}</td>
-                                    <td>{{user.sex==1?"男":"女"}}</td>
-                                    <td>{{user.company}}</td>
-                                    <td>{{user.job}}</td>
-                                    <td>
-                                        <iswitch :value="user.status" @change="changeStatus(user,$event)"></iswitch>
-                                    </td>
-                                    <td>{{user.createtime | dateFormat}}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs waves-effect waves-light m-r-10" @click="editUser(user)">编辑</button>
-                                        <button type="button" class="btn btn-danger btn-xs waves-effect waves-light m-r-10" @click="doDel(user)">删除</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot v-else-if="!loading">
-                                <tr>
-                                    <td colspan="10" style="text-align: center;">没有数据</td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                        <div :is="orderTable" :orders="data" @edit="editOrder"></div>
                         <table-loading v-if="loading"></table-loading>
                     </div>
                     <pagination :total="total" :size="params.limit" :page="params.page" @change="changePage"></pagination>
@@ -57,6 +28,11 @@
     import { getOrders,delOrder } from '@/api/service/order'
     import { getServiceDetail } from '@/api/service'
     import { getAllCompanies } from '@/api/company'
+    import TijianOrder from './tijian/index'
+    import JiatingOrder from './jiating/index'
+    import MenzhenOrder from './menzhen/index'
+    import LiliaoOrder from './liliao/index'
+    import ZhuyuanOrder from './zhuyuan/index'
     export default {
         name:"ServiceOrderList",
         components:{
@@ -78,194 +54,17 @@
                 actions:[],
                 showModalDel: false,
                 total:0,
+                table:null,
             }
         },
         computed:{
-            headers(){
+            orderTable(){
                 switch(this.service.alias){
-                    case 'tijian':return [
-                        {
-                            label:"ID",
-                            name:"id",
-                            width:"60px",
-                            sort:true
-                        },
-                        {
-                            label:"预约用户",
-                            name:"user_name",
-                        },
-                        {
-                            label:"预约医院",
-                            name:"company_id",
-                        },
-                        {
-                            label:"预约套餐",
-                            name:"package_name",
-                        },
-                        {
-                            label:"预约时间",
-                            name:"book_time",
-                        },
-                        {
-                            label:"预约确认时间",
-                            name:"confirm_time",
-                        },
-                        {
-                            label:"状态",
-                            name:"status",
-                            filters:[{text:"预约中",value:1},{text:"预约成功",value:2},{text:"取消预约",value:3}],
-                        }
-                    ];
-                    case 'jiating':return [
-                        {
-                            label:"ID",
-                            name:"id",
-                            width:"60px",
-                            sort:true
-                        },
-                        {
-                            label:"预约用户",
-                            name:"user_name",
-                        },
-                        {
-                            label:"预约医院",
-                            name:"company_id",
-                        },
-                        {
-                            label:"患者病状",
-                            name:"remark",
-                            tooltip:true
-                        },
-                        {
-                            label:"服务地址",
-                            name:"address",
-                        },
-
-                        {
-                            label:"预约时间",
-                            name:"book_time",
-                        },
-                        {
-                            label:"确认时间",
-                            name:"confirm_time",
-                        },
-                        {
-                            label:"状态",
-                            name:"status",
-                            filters:[{text:"预约中",value:1},{text:"预约成功",value:2},{text:"取消预约",value:3}],
-                        }
-                    ];
-                    case 'menzhen':return [
-                        {
-                            label:"ID",
-                            name:"id",
-                            width:"60px",
-                            sort:true
-                        },
-                        {
-                            label:"预约用户",
-                            name:"user_name",
-                        },
-                        {
-                            label:"预约医院",
-                            name:"company_id",
-                        },
-                        {
-                            label:"科室",
-                            name:"office_name",
-                        },
-                        {
-                            label:"患者病状",
-                            name:"remark",
-                            tooltip:true
-                        },
-                        {
-                            label:"预约时间",
-                            name:"book_time",
-                        },
-                        {
-                            label:"确认时间",
-                            name:"confirm_time",
-                        },
-                        {
-                            label:"状态",
-                            name:"status",
-                            filters:[{text:"预约中",value:1},{text:"预约成功",value:2},{text:"取消预约",value:3}],
-                        }
-                    ];
-                    case 'liliao':return [
-                        {
-                            label:"ID",
-                            name:"id",
-                            width:"60px",
-                            sort:true
-                        },
-                        {
-                            label:"预约用户",
-                            name:"user_name",
-                        },
-                        {
-                            label:"预约医院",
-                            name:"company_id",
-                        },
-                        {
-                            label:"科室",
-                            name:"office_name",
-                        },
-                        {
-                            label:"患者病状",
-                            name:"remark",
-                            tooltip:true
-                        },
-                        {
-                            label:"预约时间",
-                            name:"book_time",
-                        },
-                        {
-                            label:"确认时间",
-                            name:"confirm_time",
-                        },
-                        {
-                            label:"状态",
-                            name:"status",
-                            filters:[{text:"预约中",value:1},{text:"预约成功",value:2},{text:"取消预约",value:3}],
-                        }
-                    ];
-                    case 'zhuyuan':return [
-                        {
-                            label:"ID",
-                            name:"id",
-                            width:"60px",
-                            sort:true
-                        },
-                        {
-                            label:"预约用户",
-                            name:"user_name",
-                        },
-                        {
-                            label:"预约医院",
-                            name:"company_id",
-                        },
-                        {
-                            label:"患者病状",
-                            name:"remark",
-                            tooltip:true
-                        },
-                        {
-                            label:"预约时间",
-                            name:"book_time",
-                        },
-                        {
-                            label:"确认时间",
-                            name:"confirm_time",
-                        },
-                        {
-                            label:"状态",
-                            name:"status",
-                            filters:[{text:"预约中",value:1},{text:"预约成功",value:2},{text:"取消预约",value:3}],
-                        }
-                    ];
-                    default: return []
+                    case 'tijian':return TijianOrder
+                    case 'jiating':return JiatingOrder
+                    case 'menzhen':return MenzhenOrder
+                    case 'liliao':return LiliaoOrder
+                    case 'zhuyuan':return ZhuyuanOrder
                 }
             }
         },
@@ -280,7 +79,7 @@
             }
         },
         methods:{
-            editUser(user){
+            editOrder(user){
                 this.$router.push({name:"user_edit",params:{id:user.id}})
             },
             doDel(user){

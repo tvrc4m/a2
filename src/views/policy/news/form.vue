@@ -10,7 +10,7 @@
             <form class="form-horizontal" role="form">
                 <iform type="select" label="模块" placeholder="请选择模块" :options="modules" required :value.sync="news.module_id"></iform>
                 <iform type="text" label="标题" placeholder="请输入标题" :value.sync="news.title" required></iform>
-                <iform type="text" label="内容" placeholder="请输入内容" :value.sync="news.content" required></iform>
+                <iform type="textarea" label="内容" placeholder="请输入内容" :value.sync="news.content" required></iform>
                 <iform type="text" label="排序值" placeholder="从大到小排序" :value.sync="news.sort"></iform>
                 <iform type="switch" label="状态" :value.sync="news.status"></iform>
                 <iform type="confirm" @submit="updateNews"></iform>
@@ -50,6 +50,10 @@
                 })
             },
             updateNews(){
+                if(!assertEmpty(this.news.module_id)){
+                    this.$message.error('请选择所属模块')
+                    return false
+                }
                 if(!assertEmpty(this.news.title)){
                     this.$message.error('请输入标题')
                     return false

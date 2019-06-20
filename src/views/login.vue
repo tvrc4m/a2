@@ -24,7 +24,9 @@
 </template>
 <script>
     import { userLogin } from '@/api/login'
+    import { getAdminPermisions } from '@/api/rule'
     import iform from '@/components/form/index'
+    import { mapMutations } from 'vuex'
     export default {
         name:"Login",
         components:{
@@ -38,6 +40,9 @@
                 }
             }
         },
+        computed:{
+            ...mapMutations("admin",["setLoginInfo","setPermission"])
+        },
         methods:{
             doLogin(){
                 if(!this.user.username || !this.user.username.length){
@@ -49,11 +54,14 @@
                     return false
                 }
                 userLogin(this.user.username,this.user.password).then(data=>{
-                    // localStorage.setItem("authKey",data.authKey)
-                    // localStorage.setItem("sessionId",data.sessionId)
-                    // localStorage.setItem("username", data.userInfo.realname?data.userInfo.realname:data.userInfo.username)
-                    // localStorage.setItem("uid", data.userInfo.id)
-                    this.$router.push("/")
+                    this.setLoginInfo({token:data.data.token,name:data.data.name})
+                    getAdminPermisions(data.data.rule_id).then(data=>{
+                        setPermission({
+                            is_super:data.data.is_super,
+                            paths:data.data.path
+                        })
+                        this.$router.push("/")
+                    })
                 })
             }
         }

@@ -24,6 +24,7 @@ const CompanyUserList = () => import('@/views/company/user/index')
 const CompanyUserForm = () => import('@/views/company/user/form')
 const CompanyRuleList = () => import('@/views/company/rule/index')
 const CompanyRuleForm = () => import('@/views/company/rule/form')
+const CompanyRulePermission = () => import('@/views/company/rule/permission')
 const CompanyOfficeList = () => import('@/views/company/office/index')
 const CompanyOfficeForm = () => import('@/views/company/office/form')
 
@@ -277,6 +278,11 @@ const routes = [
                 components: {
                     default: CompanyRuleForm,
                 }
+            },
+            {
+                path: ":cid/rule/edit/:id/permission",
+                name: "company_rule_permission",
+                component: CompanyRulePermission
             },
             {
                 path: ":cid/office",

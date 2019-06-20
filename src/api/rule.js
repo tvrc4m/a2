@@ -23,11 +23,11 @@ export function getRule(rule_id){
     })
 }
 
-export function addRule(rule){
+export function addRule(data){
     return request({
         url:"/admin/rule/",
         method:"POST",
-        data:{rule}
+        data
     })
 }
 

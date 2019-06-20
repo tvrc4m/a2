@@ -10,7 +10,11 @@ export function userLogin(username,pwd){
 }
 
 export function userLogout(){
-
+    return request({
+        url:"/admin/logout",
+        method:"POST",
+        data:{}
+    })
 }
 
 export function getSideMenu(){

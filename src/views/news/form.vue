@@ -11,7 +11,7 @@
                 <iform type="text" label="标题" placeholder="请输入标题" :value.sync="news.title" required></iform>
                 <iform type="text" label="来源" placeholder="请输入来源" :value.sync="news.source"></iform>
                 <iform type="upload" label="封面图片" @change-file="uploadImg" :btnSize="11" :small="true" required :url="news.thumb"></iform>
-                <iform type="text" label="内容" placeholder="请输入内容" :value.sync="news.content" required></iform>
+                <iform type="textarea" label="内容" placeholder="请输入内容" :value.sync="news.content" required></iform>
                 <iform type="text" label="排序值" placeholder="从大到小排序" :value.sync="news.sort"></iform>
                 <iform type="switch" label="状态" :value.sync="news.status"></iform>
                 <iform type="confirm" @submit="updateNews"></iform>
@@ -45,8 +45,8 @@
         },
         methods:{
             uploadImg(file){
-                uploadImage(file).then(data=>{
-                    this.$set(this.user, 'img', data.code)
+                uploadImage(file, "news").then(data=>{
+                    this.$set(this.news, 'thumb', data.url)
                 })
             },
             updateNews(){

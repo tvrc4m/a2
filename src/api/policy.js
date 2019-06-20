@@ -18,8 +18,8 @@ export function addModule(params={}){
 }
 
 // 编辑用户信息
-export function editModule(params){
-    return req.put(`/admin/policy/module/${params.id}`,params)
+export function editModule(module_id,params){
+    return req.put(`/admin/policy/module/${module_id}`,params)
 }
 
 export function updateModuleStatus(id,status){
