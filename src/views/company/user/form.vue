@@ -33,8 +33,6 @@
         data(){
             return {
                 user:{},
-                company:{},
-                company_id:null,
                 add:true,
                 breadcrumbs:[],
                 rules:[],
@@ -42,8 +40,6 @@
         },
         methods:{
             updateUser(){
-                console.log(333)
-                console.log(this.user)
                 if(!assertEmpty(this.user.rule_id)){
                     this.$message.error("请选择角色")
                     return false
@@ -61,14 +57,14 @@
                     return false
                 }
                 if(this.add){
-                    addCompanyUser(this.company_id, this.user).then(data=>{
+                    addCompanyUser(this.user).then(data=>{
                         this.$message.success("添加成功")
-                        this.$router.push({name:"company_user"})
+                        this.$router.push({name:"user"})
                     })
                 }else{
-                    editCompanyUser(this.company_id, this.user.id, this.user).then(()=>{
+                    editCompanyUser(this.user.id, this.user).then(()=>{
                         this.$message.success("编辑成功")
-                        this.$router.push({name:"company_user"})
+                        this.$router.push({name:"user"})
                     })
                 }
                 console.log(this.user)
@@ -77,12 +73,11 @@
         mounted(){
             if(this.$route.params.id){
                 this.add=false
-                getCompanyUser(this.$route.params.cid,this.$route.params.id).then(data=>{
+                getCompanyUser(this.$route.params.id).then(data=>{
                     this.user=data
                 })
             }
-            this.company_id=this.$route.params.cid
-            getAllRules(this.$route.params.cid).then(data=>{
+            getAllRules().then(data=>{
                 this.rules=data.map(item=>{
                     return {
                         name:item.name,
@@ -92,16 +87,11 @@
             })
             this.breadcrumbs=[
                 {
-                    name:"医院/政府",
-                    route:""
-                },
-                {
-                    name:"医院列表",
-                    route:{name:"company"}
+                    name:"后台账户",
                 },
                 {
                     name:"用户管理",
-                    route:{name:"company_user",params:{cid:this.$route.params.cid}}
+                    route:{name:"user"}
                 },
                 {
                     name:this.add?"新增":"编辑",

@@ -41,12 +41,7 @@
                 data: [],
                 rule:{},
                 breadcrumbs:[],
-                company_id:null,
-                company:null,
             }
-        },
-        watch:{
-           
         },
         methods:{
             itemClick (node) {
@@ -70,9 +65,9 @@
                     })
                 })
                 let permissionsid=selected.join(",")
-                setPermission(this.company_id, this.rule.id, permissionsid).then(()=>{
+                setPermission(this.rule.id, permissionsid).then(()=>{
                     this.$message.success("保存成功")
-                    this.$router.push({name:"company_rule"})
+                    this.$router.push({name:"rule"})
                 })
             }
         },
@@ -81,9 +76,8 @@
             this.company_id=this.$route.params.cid
             if(this.$route.params.id){
                 this.add=false
-                Promise.all([getCompany(this.company_id),getRule(this.company_id, this.$route.params.id),getPaths(this.company_id)]).then(([company,rule,permissions])=>{
+                Promise.all([getRule(this.$route.params.id),getPaths()]).then(([rule,permissions])=>{
                     this.rule=rule
-                     this.company=company
                     this.loading=false
                     let selected=[]
                     if(rule.paths){
@@ -122,12 +116,11 @@
                     ]
                     this.breadcrumbs=[
                         {
-                            name:this.company.name,
-                            route:{name:"company"}
+                            name:"后台账户",
                         },
                         {
                             name:"角色管理",
-                            route:{name:"company_rule"}
+                            route:{name:"rule"}
                         },
                         {
                             name: rule.name,

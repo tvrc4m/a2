@@ -9,7 +9,7 @@
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal m-t-20">
-                        <iform type="text" label="" placeholder="用户名" @keyup.native.enter="doLogin" :value.sync="user.username"></iform>
+                        <iform type="text" label="" placeholder="用户名" @keyup.native.enter="doLogin" :value.sync="user.phone"></iform>
                         <iform type="password" label="" placeholder="密码" @keyup.native.enter="doLogin"  :value.sync="user.password"></iform>
                         <div class="form-group text-center m-t-20">
                             <div class="col-xs-12">
@@ -24,7 +24,7 @@
 </template>
 <script>
     import { userLogin } from '@/api/login'
-    import { getAdminPermisions } from '@/api/rule'
+    import { getCompanyPermisions } from '@/api/company/rule'
     import iform from '@/components/form/index'
     import { mapMutations } from 'vuex'
     export default {
@@ -35,30 +35,30 @@
         data(){
             return {
                 user:{
-                    username:null,
+                    phone:null,
                     password:null
                 }
             }
         },
-        computed:{
-            ...mapMutations("admin",["setLoginInfo","setPermission"])
-        },
         methods:{
+            ...mapMutations(["setLoginInfo","setPermission"]),
             doLogin(){
-                if(!this.user.username || !this.user.username.length){
-                    this.$message.error('请填写用户名')
+                if(!this.user.phone || !this.user.phone.length){
+                    this.$message.error('请填写登录手机号')
                     return false
                 }
                 if(!this.user.password || !this.user.password.length){
                     this.$message.error('请填写密码')
                     return false
                 }
-                userLogin(this.user.username,this.user.password).then(data=>{
-                    this.setLoginInfo({token:data.data.token,name:data.data.name})
-                    getAdminPermisions(data.data.rule_id).then(data=>{
-                        setPermission({
-                            is_super:data.data.is_super,
-                            paths:data.data.path
+                userLogin(this.user.phone,this.user.password).then(data=>{
+                    console.log("data",data)
+                    this.setLoginInfo({token:data.token,name:data.name})
+                    getCompanyPermisions(data.rule_id).then(data=>{
+                        console.log("permission",data)
+                        this.setPermission({
+                            is_super:data.is_super,
+                            paths:data.path
                         })
                         this.$router.push("/")
                     })

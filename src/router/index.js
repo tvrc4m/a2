@@ -7,18 +7,8 @@ const LayoutBasic = () => import('@/views/layout/basic')
 
 const home = () => import('@/views/home/index')
 const login = () => import('@/views/login')
-const AdminUserList = () => import('@/views/admin/user/index')
-const AdminUserForm = () => import('@/views/admin/user/form')
-const AdminRuleList = () => import('@/views/admin/rule/index')
-const AdminRuleForm = () => import('@/views/admin/rule/form')
-const AdminRulePermission = () => import('@/views/admin/rule/permission')
-const UserList = () => import('@/views/user/index')
-const UserForm = () => import('@/views/user/form')
 
-const NewsList = () => import('@/views/news/index')
-const NewsForm = () => import('@/views/news/form')
-
-const CompanyList = () => import('@/views/company/index')
+const CompanyDetail = () => import('@/views/company/detail')
 const CompanyForm = () => import('@/views/company/form')
 const CompanyUserList = () => import('@/views/company/user/index')
 const CompanyUserForm = () => import('@/views/company/user/form')
@@ -35,10 +25,7 @@ const ServiceSetting = () => import('@/views/service/setting')
 const TijianPakcageForm = () => import('@/views/service/tijian/package/form')
 const JiatingDoctorForm = () => import('@/views/service/jiating/doctor/form')
 
-const PolicyModuleList = () => import('@/views/policy/module/index')
-const PolicyModuleForm = () => import('@/views/policy/module/form')
-const PolicyNewsList = () => import('@/views/policy/news/index')
-const PolicyNewsForm = () => import('@/views/policy/news/form')
+const smsTemplateForm=()=>import('@/views/sms/template/form')
 
 const routes = [
     {
@@ -60,152 +47,71 @@ const routes = [
                 }
             },
             {
-                path: "/adm/user",
-                name: "admin_user",
-                components: {
-                    default: AdminUserList,
-                }
-            },
-            {
-                path: "/adm/user/add",
-                name: "admin_user_add",
-                components: {
-                    default: AdminUserForm,
-                }
-            },
-            {
-                path: "/adm/user/edit/:id",
-                name: "admin_user_edit",
-                components: {
-                    default: AdminUserForm,
-                }
-            },
-            {
-                path: "/adm/rule",
-                name: "admin_rule",
-                components: {
-                    default: AdminRuleList,
-                }
-            },
-            {
-                path: "/adm/rule/add",
-                name: "admin_rule_add",
-                components: {
-                    default: AdminRuleForm,
-                }
-            },
-            {
-                path: "/adm/rule/edit/:id",
-                name: "admin_rule_edit",
-                components: {
-                    default: AdminRuleForm,
-                }
-            },
-            {
-                path: "/adm/rule/:id/permission",
-                name: "admin_rule_permission",
-                components: {
-                    default: AdminRulePermission,
-                }
-            },
-            {
                 path: "user",
                 name: "user",
                 components: {
-                    default: UserList,
+                    default: CompanyUserList,
                 }
             },
             {
                 path: "user/add",
                 name: "user_add",
                 components: {
-                    default: UserForm,
+                    default: CompanyUserForm,
                 }
             },
             {
                 path: "user/edit/:id",
                 name: "user_edit",
                 components: {
-                    default: UserForm,
-                }
-            },
-        ]
-    },
-    {
-        path: '/news',
-        components: {
-            default: LayoutBasic,
-        },
-        children:[
-            {
-                path: "",
-                name: "news",
-                components: {
-                    default: NewsList,
+                    default: CompanyUserForm,
                 }
             },
             {
-                path: "add",
-                name: "news_add",
+                path: "rule",
+                name: "rule",
                 components: {
-                    default: NewsForm,
+                    default: CompanyRuleList,
                 }
             },
             {
-                path: "edit/:id",
-                name: "news_edit",
+                path: "rule/add",
+                name: "rule_add",
                 components: {
-                    default: NewsForm,
-                }
-            },
-        ]
-    },
-    {
-        path: '/policy',
-        components: {
-            default: LayoutBasic,
-        },
-        children:[
-            {
-                path: "module",
-                name: "policy_module",
-                components: {
-                    default: PolicyModuleList,
+                    default: CompanyRuleForm,
                 }
             },
             {
-                path: "module/add",
-                name: "policy_module_add",
+                path: "rule/edit/:id",
+                name: "rule_edit",
                 components: {
-                    default: PolicyModuleForm,
+                    default: CompanyRuleForm,
                 }
             },
             {
-                path: "module/edit/:id",
-                name: "policy_module_edit",
+                path: "rule/edit/:id/permission",
+                name: "rule_permission",
+                component: CompanyRulePermission
+            },
+            {
+                path: "office",
+                name: "office",
                 components: {
-                    default: PolicyModuleForm,
+                    default: CompanyOfficeList,
                 }
             },
             {
-                path: "news",
-                name: "policy_news",
+                path: "office/add",
+                name: "office_add",
                 components: {
-                    default: PolicyNewsList,
+                    default: CompanyOfficeForm,
                 }
             },
             {
-                path: "news/add",
-                name: "policy_news_add",
+                path: "office/edit/:id",
+                name: "office_edit",
                 components: {
-                    default: PolicyNewsForm,
-                }
-            },
-            {
-                path: "news/edit/:id",
-                name: "policy_news_edit",
-                components: {
-                    default: PolicyNewsForm,
+                    default: CompanyOfficeForm,
                 }
             },
         ]
@@ -218,93 +124,20 @@ const routes = [
         children:[
             {
                 path: "",
-                name: "company",
+                name: "company_detail",
                 components: {
-                    default: CompanyList,
+                    default: CompanyDetail,
                 }
             },
             {
-                path: "add",
-                name: "company_add",
-                components: {
-                    default: CompanyForm,
-                }
-            },
-            {
-                path: "edit/:id",
+                path: "edit",
                 name: "company_edit",
                 components: {
                     default: CompanyForm,
                 }
             },
-            {
-                path: ":cid/user",
-                name: "company_user",
-                components: {
-                    default: CompanyUserList,
-                }
-            },
-            {
-                path: ":cid/user/add",
-                name: "company_user_add",
-                components: {
-                    default: CompanyUserForm,
-                }
-            },
-            {
-                path: ":cid/user/edit/:id",
-                name: "company_user_edit",
-                components: {
-                    default: CompanyUserForm,
-                }
-            },
-            {
-                path: ":cid/rule",
-                name: "company_rule",
-                components: {
-                    default: CompanyRuleList,
-                }
-            },
-            {
-                path: ":cid/rule/add",
-                name: "company_rule_add",
-                components: {
-                    default: CompanyRuleForm,
-                }
-            },
-            {
-                path: ":cid/rule/edit/:id",
-                name: "company_rule_edit",
-                components: {
-                    default: CompanyRuleForm,
-                }
-            },
-            {
-                path: ":cid/rule/edit/:id/permission",
-                name: "company_rule_permission",
-                component: CompanyRulePermission
-            },
-            {
-                path: ":cid/office",
-                name: "company_office",
-                components: {
-                    default: CompanyOfficeList,
-                }
-            },
-            {
-                path: ":cid/office/add",
-                name: "company_office_add",
-                components: {
-                    default: CompanyOfficeForm,
-                }
-            },
-            {
-                path: ":cid/office/edit/:id",
-                name: "company_office_edit",
-                components: {
-                    default: CompanyOfficeForm,
-                }
-            },
+            
+            
         ]
     },
     {
@@ -337,14 +170,14 @@ const routes = [
         ]
     },
     {
-        path: '/company/:cid/service',
+        path: '/service',
         components: {
             default: LayoutBasic,
         },
         children:[
             {
-                path: ":alias/setting",
-                name: "service_setting",
+                path: ":alias",
+                name: "service",
                 components: {
                     default: ServiceSetting,
                 }
@@ -368,9 +201,14 @@ const routes = [
                 path:"jiating/doctor/add/:id",
                 name:"jiating_doctor_edit",
                 component:JiatingDoctorForm,
-            }
+            },
+            {
+                path:":alias/sms",
+                name:"sms_template_form",
+                component:smsTemplateForm
+            },
         ]
-    }
+    },
 ]
 
 const router = new Router({

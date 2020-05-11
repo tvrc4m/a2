@@ -51,43 +51,27 @@
                     this.$message.error("请输入套餐内容")
                     return false
                 }
-                this.pack.company_id=this.company_id
                 if(this.add){
                     addPackage(this.pack).then(data=>{
                         this.$message.success("添加成功")
-                        this.$router.push({name:"service_setting",params:{cid:this.company_id,alias:this.service.alias}})
+                        this.$router.push({name:"service",params:{alias:this.service.alias}})
                     })
                 }else{
                     editPackage(this.pack.id,this.pack).then(()=>{
                         this.$message.success("编辑成功")
-                        this.$router.push({name:"service_setting",params:{cid:this.company_id,alias:this.service.alias}})
+                        this.$router.push({name:"service",params:{alias:this.service.alias}})
                     })
                 }
                 console.log(this.pack)
             }
         },
         mounted(){
-            this.company_id=this.$route.params.cid
             if(this.$route.params.id){
                 this.add=false
                 getPackage(this.$route.params.id).then(data=>{
                     this.pack=data
                 })
             }
-            getCompany(this.company_id).then(data=>{
-                this.company=data
-                this.breadcrumbs.push({
-                    name: this.company.name,
-                    route:{name:"company"}
-                })
-                this.breadcrumbs.push({
-                    name: "体检套餐管理",
-                    route:{name:"service_setting",params:{cid:this.company_id,alias:this.service.alias}}
-                })
-                this.breadcrumbs.push({
-                    name: this.add?"新增":"编辑"
-                })
-            })
         }
     }
 </script>

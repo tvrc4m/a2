@@ -1,17 +1,17 @@
 import request from '@/utils/request'
 
 // 用户登录
-export function userLogin(username,pwd){
+export function userLogin(phone,password){
     return request({
-        url:"/admin/login",
+        url:"/company/login",
         method:"POST",
-        params:{username:username,password:pwd}
+        params:{phone,password}
     })
 }
 
 export function userLogout(){
     return request({
-        url:"/admin/logout",
+        url:"/company/logout",
         method:"POST",
         data:{}
     })

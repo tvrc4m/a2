@@ -3,7 +3,7 @@
         <label class="control-label" :class="lmd"></label>
         <div class="col-md-10 text-left">
             <button type="button" class="btn btn-primary btn-sm m-r-10" @click="doConfirm">{{confirm}}</button>
-            <button type="button" class="btn btn-white btn-sm" @click="doBack">{{back}}</button>
+            <button type="button" class="btn btn-white btn-sm" v-if="back" @click="doBack">{{back}}</button>
         </div>
     </div>
 </template>

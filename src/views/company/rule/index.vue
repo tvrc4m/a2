@@ -45,7 +45,6 @@
     import loading_mixin from '@/mixins/loading'
     import page_mixin from '@/mixins/page'
     import { getRules,delRule } from '@/api/company/rule'
-    import { getCompany } from '@/api/company'
     export default {
         name:"AdminUser",
         components:{
@@ -56,7 +55,6 @@
         mixins:[page_mixin,loading_mixin],
         data(){
             return {
-                rule_id:null,
                 rule:{},
                 headers:[
                     {
@@ -85,8 +83,12 @@
                 data:[],
                 breadcrumbs:[
                     {
-                        name:"医院/政府",
+                        name:"后台账户",
                         route:""
+                    },
+                    {
+                        name:"角色管理",
+                        route:{name:"rule"}
                     }
                 ],
                 actions:[
@@ -94,53 +96,38 @@
                         name:"新增",
                         icon:"fa-plus",
                         route:{
-                            name:'company_rule_add'
+                            name:'rule_add'
                         }
                     }
                 ],
-                showModalDel: false,
                 total:0,
             }
         },
         methods:{
             editRule(rule){
-                this.$router.push({name:"company_rule_edit",params:{id:rule.id}})
+                this.$router.push({name:"rule_edit",params:{id:rule.id}})
             },
             doDel(rule){
                 this.$confirm('是否确认删除?').then(()=>{
-                    delRule(this.company_id, rule.id).then(()=>{
+                    delRule(rule.id).then(()=>{
                         this.data=this.data.filter(item=>item.id!=rule.id)
                     })
                 })
             },
             setRule(rule){
-                this.$router.push({name:"company_rule_permission",params:{cid:this.company_id,id:rule.id}})
+                this.$router.push({name:"rule_permission",params:{id:rule.id}})
             },
             changePage(page){
                 this.params.page=page
-                getRules(this.company_id).then(data=>{
-                    console.log("data:",data)
+                getRules().then(data=>{
                     this.loading=false
                     this.data=data.data
                     this.total=data.total
-                    console.log(data)
                 })
             }
         },
         mounted(){
-            this.company_id=this.$route.params.cid
             this.changePage(1)
-            getCompany(this.company_id).then(data=>{
-                this.company=data
-                this.breadcrumbs.push({
-                    name: this.company.name,
-                    route:{name:"company"}
-                })
-                this.breadcrumbs.push({
-                    name: "权限管理",
-                    route:{name:"company_rule",params:{id:this.company_id}}
-                })
-            })
         }
     }
 </script>

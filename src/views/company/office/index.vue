@@ -54,8 +54,6 @@
         mixins:[page_mixin,loading_mixin],
         data(){
             return {
-                company_id:null,
-                company:{},
                 headers:[
                     {
                         label:"ID",
@@ -80,7 +78,7 @@
                 data:[],
                 breadcrumbs:[
                     {
-                        name:"医院/政府",
+                        name:"科室管理",
                         route:""
                     }
                 ],
@@ -89,7 +87,7 @@
                         name:"新增",
                         icon:"fa-plus",
                         route:{
-                            name:'company_office_add'
+                            name:'office_add'
                         }
                     }
                 ],
@@ -99,17 +97,17 @@
         },
         methods:{
             editOffice(office){
-                this.$router.push({name:"company_office_edit",params:{cid:this.company_id,id:office.id}})
+                this.$router.push({name:"office_edit",params:{id:office.id}})
             },
             doDel(office){
                 this.$confirm('是否确认删除?').then(()=>{
-                    delOffice(this.company_id, office.id).then(()=>{
+                    delOffice(office.id).then(()=>{
                         this.data=this.data.filter(item=>item.id!=office.id)
                     })
                 })
             },
             changePage(page){
-                getOffices(this.company_id, page).then(data=>{
+                getOffices(page).then(data=>{
                     console.log("data:",data)
                     this.loading=false
                     this.data=data.data
@@ -118,19 +116,7 @@
             }
         },
         mounted(){
-            this.company_id=this.$route.params.cid
             this.changePage(1)
-            getCompany(this.company_id).then(data=>{
-                this.company=data
-                this.breadcrumbs.push({
-                    name: this.company.name,
-                    route:{name:"company"}
-                })
-                this.breadcrumbs.push({
-                    name: "科室管理",
-                    route:{name:"company_office",params:{cid:this.company_id}}
-                })
-            })
         }
     }
 </script>

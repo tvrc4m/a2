@@ -56,7 +56,6 @@
         mixins:[page_mixin,loading_mixin],
         data(){
             return {
-                company_id:null,
                 company:{},
                 headers:[
                     {
@@ -89,7 +88,11 @@
                 data:[],
                 breadcrumbs:[
                     {
-                        name:"医院/政府",
+                        name:"后台账户",
+                        route:""
+                    },
+                    {
+                        name:"用户管理",
                         route:""
                     }
                 ],
@@ -98,7 +101,7 @@
                         name:"新增",
                         icon:"fa-plus",
                         route:{
-                            name:'company_user_add'
+                            name:'user_add'
                         }
                     }
                 ],
@@ -108,17 +111,17 @@
         },
         methods:{
             editUser(user){
-                this.$router.push({name:"company_user_edit",params:{id:user.id}})
+                this.$router.push({name:"user_edit",params:{id:user.id}})
             },
             doDel(user){
                 this.$confirm('是否确认删除?').then(()=>{
-                    delCompanyUser(this.company_id, user.id).then(()=>{
+                    delCompanyUser(user.id).then(()=>{
                         this.data=this.data.filter(item=>item.id!=user.id)
                     })
                 })
             },
             changePage(page){
-                getCompanyUsers(this.company_id, page).then(data=>{
+                getCompanyUsers(page).then(data=>{
                     this.loading=false
                     this.data=data.data
                     this.total=data.total
@@ -126,19 +129,7 @@
             }
         },
         mounted(){
-            this.company_id=this.$route.params.cid
             this.changePage(1)
-            getCompany(this.company_id).then(data=>{
-                this.company=data
-                this.breadcrumbs.push({
-                    name: this.company.name,
-                    route:{name:"company"}
-                })
-                this.breadcrumbs.push({
-                    name: "账户管理",
-                    route:{name:"company_user",params:{id:this.company_id}}
-                })
-            })
         }
     }
 </script>

@@ -56,24 +56,31 @@
                         key:"account",
                         icon:"ti-user",
                         open:true,
-                        url:"/adm",
                         chear:[
                             {
                                 name:"用户管理",
-                                url:"/adm/user",
+                                url:"/user",
                             },
                             {
                                 name:"角色管理",
-                                url:"/adm/rule",
+                                url:"/rule",
                             },
                         ]
                     },
                     {
-                        name:"医院/政府",
+                        name:"企业详情",
                         key:"company",
                         icon:"ti-crown",
                         open:true,
                         url:"/company",
+                        chear:[]
+                    },
+                    {
+                        name:"科室管理",
+                        key:"office",
+                        icon:"ti-agenda",
+                        open:true,
+                        url:"/office",
                         chear:[]
                     },
                     {
@@ -85,17 +92,9 @@
                         chear:[]
                     },
                     {
-                        name:"新闻管理",
-                        key:"news",
-                        icon:"ti-gallery",
-                        open:true,
-                        url:"/news",
-                        chear:[]
-                    },
-                    {
-                        name:"政策速递",
-                        key:"policy",
-                        icon:"ti-rocket",
+                        name:"服务列表",
+                        key:"service",
+                        icon:"ti-align-right",
                         open:true,
                         chear:[
                             {
@@ -127,15 +126,28 @@
         },
         mounted(){
              getAllServices().then(data=>{
-                this.services=data.map(item=>{
+                let orders=data.map(item=>{
                     return {name:item.name,url:`/order/${item.alias}`}
+                })
+                let services=data.map(item=>{
+                    return {name:item.name,url:`/service/${item.alias}`}
                 })
                 for(let index in this.menus){
                     if(this.menus[index].key=="order"){
-                        this.menus[index]['chear']=this.services
+                        this.menus[index]['chear']=orders
+                    }else if(this.menus[index].key=="service"){
+                        this.menus[index]['chear']=services
                     }
                 }
             })
         },
     }
 </script>
+<style>
+    .mini-side-menu{
+        width: auto;
+        height: 100%;
+        overflow: visible;
+        position: relative;
+    }
+</style>

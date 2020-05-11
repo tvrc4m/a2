@@ -10,7 +10,11 @@
                 <td>{{order.id}}</td>
                 <td>{{order.order_name}}</td>
                 <td>{{order.company_name}}</td>
-                <td>{{order.remark}}</td>
+                <td>
+                    <div style="max-width: 200px;" :title="order.remark">
+                        {{order.remark}}
+                    </div>
+                </td>
                 <td>{{order.address}}</td>
                 <td>{{order.book_time}} {{order.time_span==1?"上午":"下午"}}</td>
                 <td>

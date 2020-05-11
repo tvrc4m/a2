@@ -17,7 +17,6 @@
     import tableLoading from '@/components/loading/table'
     import loading_mixin from '@/mixins/loading'
     import page_mixin from '@/mixins/page'
-    import { getCompany } from '@/api/company'
     import { getDoctors,delDoctor } from '@/api/service/doctor'
     export default {
         name:"ServiceTijianDoctor",
@@ -60,9 +59,11 @@
                     }
                 ],
                 data:[],
-                company_id:null,
                 breadcrumbs:[
-                    
+                    {
+                        name:"就诊服务",
+                        route:""
+                    },
                 ],
                 total:0,
                 service:{
@@ -78,8 +79,8 @@
                         name:"短信模板",
                         icon:"fa-plus",
                         route:{
-                            name:'jiating_doctor_add',
-                            params:{cid:this.company_id, alias:this.service.alias}
+                            name:'sms_template_form',
+                            params:{alias:this.service.alias}
                         }
                     }
                 ]
@@ -101,21 +102,7 @@
             }
         },
         mounted(){
-            this.company_id = this.$route.params.cid
             this.changePage(1)
-            getCompany(this.company_id).then(data=>{
-                this.company=data
-                this.breadcrumbs.push({
-                    name: this.company.name,
-                    route:{name:"company"}
-                })
-                this.breadcrumbs.push({
-                    name: this.service.name,
-                })
-                this.breadcrumbs.push({
-                    name: "家庭医生管理",
-                })
-            })
         }
     }
 </script>

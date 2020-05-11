@@ -30,13 +30,20 @@
         },
         data(){
             return {
-                company:{},
                 rule:{},
                 options:[],
                 add:true,
                 breadcrumbs:[
                     {
-                        name:"医院/政府",
+                        name:"后台账户",
+                        route:""
+                    },
+                    {
+                        name:"角色管理",
+                        route:{name:"rule"}
+                    },
+                    {
+                        name:this.add?"新增":"编辑",
                         route:""
                     },
                 ],
@@ -50,41 +57,26 @@
                     return false
                 }
                 if(this.add){
-                    addRule(this.company_id, this.rule).then(data=>{
+                    addRule(this.rule).then(data=>{
                         this.$message.success("添加成功")
-                        this.$router.push({name:"company_rule",params:{cid:this.company_id}})
+                        this.$router.push({name:"rule"})
                     })
                 }else{
-                    editRule(this.company_id, this.rule).then(()=>{
+                    editRule(this.rule).then(()=>{
                         this.$message.success("编辑成功")
-                        this.$router.push({name:"company_rule",params:{cid:this.company_id}})
+                        this.$router.push({name:"rule"})
                     })
                 }
                 console.log(this.rule)
             }
         },
         mounted(){
-            this.company_id = this.$route.params.cid
             if(this.$route.params.id){
                 this.add=false
-                getRule(this.company_id,this.$route.params.id).then(data=>{
+                getRule(this.$route.params.id).then(data=>{
                     this.rule=data
                 })
             }
-            getCompany(this.company_id).then(data=>{
-                this.company=data
-                this.breadcrumbs.push({
-                    name: this.company.name,
-                    route:{name:"company"}
-                })
-                this.breadcrumbs.push({
-                    name: "权限管理",
-                    route:{name:"company_rule",params:{id:this.company_id}}
-                })
-                this.breadcrumbs.push({
-                    name: this.add?"新增":"编辑",
-                })
-            })
         }
     }
 </script>

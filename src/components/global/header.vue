@@ -44,7 +44,7 @@
                             </ul>
                         </li>
                         <li class="dropdown top-menu-item-xs">
-                            <a href="javascript:void(0);" class="dropdown-toggle profile waves-effect waves-light">{{username}}</a>
+                            <a href="javascript:void(0);" class="dropdown-toggle profile waves-effect waves-light">{{login_name}}</a>
                         </li>
                         <li>
                              <div class="dropdown pull-left">
@@ -76,12 +76,11 @@
                 show: false,
                 showNotification:false,
                 showProfile:false,
-                username: localStorage.getItem("username"),
                 unread_total:7,
             }
         },
         computed:{
-            ...mapState(["minibar"])
+            ...mapState(["minibar","login_name"])
         },
         methods:{
             ...mapMutations(["update_minibar"]),

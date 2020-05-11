@@ -1,31 +1,31 @@
 import req from '@/utils/request'
 
 export function getRulePages(){
-    return req.get("/admin/company/rule/pages")
+    return req.get("/company/rule/pages")
 }
 // 获取所有的角色
-export function getAllRules(company_id){
-    return req.get(`/admin/company/${company_id}/rules`)
+export function getAllRules(){
+    return req.get(`/company/rules`)
 }
 // 角色分页
-export function getRules(company_id,page=1,limit=20){
-    return req.get(`/admin/company/${company_id}/rule`,{
+export function getRules(page=1,limit=20){
+    return req.get(`/company/rule`,{
         params:{
             page,limit
         }
     })   
 }
 
-export function getRule(company_id,rule_id){
-    return req.get(`/admin/company/${company_id}/rule/${rule_id}`)
+export function getRule(rule_id){
+    return req.get(`/company/rule/${rule_id}`)
 }
 
-export function addRule(company_id,rule){
-    return req.post(`/admin/company/${company_id}/rule`,rule)
+export function addRule(rule){
+    return req.post(`/company/rule`,rule)
 }
 
-export function editRule(company_id,rule){
-    return req.put(`/admin/company/${company_id}/rule/${rule.id}`,{
+export function editRule(rule){
+    return req.put(`/company/rule/${rule.id}`,{
         id:rule.id,
         name:rule.name,
         remark:rule.remark
@@ -33,21 +33,21 @@ export function editRule(company_id,rule){
 }
 
 export function setPermission(rule_id,paths){
-    return req.put(`/admin/company/rule/${rule_id}/permission`,{
+    return req.put(`/company/rule/${rule_id}/permission`,{
         paths:paths
     })
 }
 
-export function delRule(company_id,rule_id){
-    return req.delete(`/admin/company/${company_id}/rule/${rule_id}`)
+export function delRule(rule_id){
+    return req.delete(`/company/rule/${rule_id}`)
 }
 
 export function getPaths(){
-    return req.get(`/admin/company/rule/paths`)
+    return req.get(`/company/rule/paths`)
 }
 
-export function getCompanyPermisions(company_id,rule_id){
-    return req.get(`/admin/company/${company_id}/rule/permissions`,{
+export function getCompanyPermisions(rule_id){
+    return req.get(`/company/rule/permissions`,{
         params:{
             rule_id
         }

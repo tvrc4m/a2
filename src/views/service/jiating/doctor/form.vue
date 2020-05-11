@@ -57,45 +57,30 @@
                 if(this.add){
                     addDoctor(this.doctor).then(data=>{
                         this.$message.success("添加成功")
-                        this.$router.push({name:"service_setting",params:{cid:this.company_id,alias:this.service.alias}})
+                        this.$router.push({name:"service",params:{cid:this.company_id,alias:this.service.alias}})
                     })
                 }else{
                     editDoctor(this.doctor.id,this.doctor).then(()=>{
                         this.$message.success("编辑成功")
-                        this.$router.push({name:"service_setting",params:{cid:this.company_id,alias:this.service.alias}})
+                        this.$router.push({name:"service",params:{cid:this.company_id,alias:this.service.alias}})
                     })
                 }
                 console.log(this.doctor)
             }
         },
         mounted(){
-            this.company_id=this.$route.params.cid
             if(this.$route.params.id){
                 this.add=false
                 getDoctor(this.$route.params.id).then(data=>{
                     this.doctor=data
                 })
             }
-            getOffices(this.company_id).then(data=>{
+            getOffices().then(data=>{
                 this.offices=data.data.map(item=>{
                     return {
                         name:item.name,
                         value:item.id
                     }
-                })
-            })
-            getCompany(this.company_id).then(data=>{
-                this.company=data
-                this.breadcrumbs.push({
-                    name: this.company.name,
-                    route:{name:"company"}
-                })
-                this.breadcrumbs.push({
-                    name: this.service.name,
-                    route:{name:"service_setting",params:{cid:this.company_id,alias:this.service.alias}}
-                })
-                this.breadcrumbs.push({
-                    name: this.add?"新增":"编辑"
                 })
             })
         }

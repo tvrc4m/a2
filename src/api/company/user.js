@@ -1,25 +1,29 @@
 import req from '@/utils/request'
 
-export function getCompanyUsers(company_id,page=1,limit=20){
-    return req.get(`/admin/company/${company_id}/user`,{
+export function getCompanyUsers(page=1,limit=20){
+    return req.get(`/company/user`,{
         params:{
             page,limit
         }
     })
 }
 
-export function getCompanyUser(company_id,user_id){
-    return req.get(`/admin/company/${company_id}/user/${user_id}`)
+export function getUser(user_id){
+    return req.get(`/company/user/${user_id}`)
 }
 
-export function addCompanyUser(company_id,data){
-    return req.post(`/admin/company/${company_id}/user`,data)
+export function getCompanyUser(user_id){
+    return req.get(`/company/user/${user_id}`)
 }
 
-export function editCompanyUser(company_id,user_id,data){
-    return req.put(`/admin/company/${company_id}/user/${user_id}`,data)
+export function addCompanyUser(data){
+    return req.post(`/company/user`,data)
 }
 
-export function delCompanyUser(company_id,user_id){
-    return req.delete(`/admin/company/${company_id}/user/${user_id}`)
+export function editCompanyUser(user_id,data){
+    return req.put(`/company/user/${user_id}`,data)
+}
+
+export function delCompanyUser(user_id){
+    return req.delete(`/company/user/${user_id}`)
 }

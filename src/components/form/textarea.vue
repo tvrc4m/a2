@@ -2,7 +2,7 @@
     <div class="form-group">
         <label v-if="label.length" class="col-md-1 control-label" :class="{required:required}">{{label}}</label>
         <div :class="md">
-            <textarea id="textarea" class="form-control" rows="3" :placeholder="placeholder" v-model="v"></textarea>
+            <textarea id="textarea" class="form-control" rows="3" :placeholder="placeholder" :disabled="disabled" v-model="v"></textarea>
         </div>
     </div>
 </template>
@@ -23,6 +23,10 @@
                 default:null
             },
             required:{
+                type:Boolean,
+                default:false
+            },
+            disabled:{
                 type:Boolean,
                 default:false
             }

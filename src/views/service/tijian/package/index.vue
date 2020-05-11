@@ -73,9 +73,14 @@
                     }
                 ],
                 data:[],
-                company_id:null,
                 breadcrumbs:[
-                    
+                    {
+                        name:"健康体验",
+                        route:""
+                    },
+                    {
+                        name:"体验套餐",
+                    }
                 ],
                 total:0,
                 service:{
@@ -92,7 +97,7 @@
                         icon:"fa-plus",
                         route:{
                             name:'tijian_package_add',
-                            params:{cid:this.company_id, alias:this.service.alias}
+                            params:{alias:this.service.alias}
                         }
                     }
                 ]
@@ -100,7 +105,7 @@
         },
         methods:{
             editPackage(pack){
-                this.$router.push({name:"tijian_package_edit",params:{id:pack.id,cid:this.company_id,alias:this.service.alis}})
+                this.$router.push({name:"tijian_package_edit",params:{id:pack.id,alias:this.service.alis}})
             },
             doDel(pack){
                 this.$confirm('是否确认删除?').then(()=>{
@@ -111,30 +116,15 @@
             },
             changePage(page){
                 this.params.page=page
-                getPackages(this.company_id).then(data=>{
+                getPackages().then(data=>{
                     this.loading=false
                     this.data=data.data
                     this.total=data.total
-                    console.log(data)
                 })
             }
         },
         mounted(){
-            this.company_id = this.$route.params.cid
             this.changePage(1)
-            getCompany(this.company_id).then(data=>{
-                this.company=data
-                this.breadcrumbs.push({
-                    name: this.company.name,
-                    route:{name:"company"}
-                })
-                this.breadcrumbs.push({
-                    name: this.service.name,
-                })
-                this.breadcrumbs.push({
-                    name: "体检套餐管理",
-                })
-            })
         }
     }
 </script>

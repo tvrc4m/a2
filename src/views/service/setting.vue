@@ -18,8 +18,8 @@
             }
         },
         watch:{
-            $route(){
-                if(route.name=='service_setting'){
+            $route(route){
+                if(route.name=='service'){
                     this.changeService()
                 }
             }

@@ -90,7 +90,13 @@
                 data:[],
                 company_id:null,
                 breadcrumbs:[
-                    
+                    {
+                        name:"家庭医生",
+                        route:""
+                    },
+                    {
+                        name:"家庭医生管理",
+                    }
                 ],
                 total:0,
                 service:{
@@ -107,7 +113,7 @@
                         icon:"fa-plus",
                         route:{
                             name:'jiating_doctor_add',
-                            params:{cid:this.company_id, alias:this.service.alias}
+                            params:{alias:this.service.alias}
                         }
                     }
                 ]
@@ -115,7 +121,7 @@
         },
         methods:{
             editDoctor(doctor){
-                this.$router.push({name:"jiating_doctor_edit",params:{id:doctor.id,cid:this.company_id,alias:this.service.alis}})
+                this.$router.push({name:"jiating_doctor_edit",params:{id:doctor.id,alias:this.service.alis}})
             },
             doDel(doctor){
                 this.$confirm('是否确认删除?').then(()=>{
@@ -126,30 +132,15 @@
             },
             changePage(page){
                 this.params.page=page
-                getDoctors(this.company_id).then(data=>{
+                getDoctors().then(data=>{
                     this.loading=false
                     this.data=data.data
                     this.total=data.total
-                    console.log(data)
                 })
             }
         },
         mounted(){
-            this.company_id = this.$route.params.cid
             this.changePage(1)
-            getCompany(this.company_id).then(data=>{
-                this.company=data
-                this.breadcrumbs.push({
-                    name: this.company.name,
-                    route:{name:"company"}
-                })
-                this.breadcrumbs.push({
-                    name: this.service.name,
-                })
-                this.breadcrumbs.push({
-                    name: "家庭医生管理",
-                })
-            })
         }
     }
 </script>

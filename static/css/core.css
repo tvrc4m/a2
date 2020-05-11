@@ -1438,12 +1438,12 @@ body.fixed-left .side-menu.left {
   margin: 3px 0 0 0;
 }
 #sidebar-menu > ul > li > a.active {
-  background: #313a43 !important;
+  /*background: #313a43 !important;
   border-left: 3px solid #5fbeaa;
-  color: #5fbeaa !important;
-  /*border-left: 3px solid #ae0c2a;
+  color: #5fbeaa !important;*/
+  border-left: 3px solid #ae0c2a;
   color: #fff !important;
-  background: #292121 !important;*/
+  background: #292121 !important;
 }
 .menu-title {
   padding: 12px 20px !important;

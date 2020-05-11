@@ -1,11 +1,11 @@
 <template>
     <div class="btn-group bootstrap-select show-tick">
-        <button type="button" class="btn dropdown-toggle form-control" data-toggle="dropdown" :title="selected" @click.stop="open=!open" style="min-width: 100%;">
+        <button type="button" class="btn dropdown-toggle form-control" :class="{disabled:disabled}" data-toggle="dropdown" :title="selected" @click.stop="open=!open" style="min-width: 100%;">
             <span class="filter-option pull-left" v-if="selected">{{selected}}</span>
             <span class="filter-option pull-left" v-else style="opacity: 0.7;">{{placeholder}}</span>&nbsp;
             <span class="bs-caret"><span class="caret"></span></span>
         </button>
-        <div :class="['dropdown-menu',{open:open}]">
+        <div :class="['dropdown-menu',{open:open}]" v-if="!disabled">
             <ul class="dropdown-menu inner" role="menu">
                 <li v-for="option in options" :key="option.value" class="ms-hover" @click.stop="optionClick(option)">
                     <a>
@@ -15,7 +15,7 @@
                 </li>
             </ul>
         </div>
-        <select v-show="false" class="selectpicker" data-style="btn-white" multiple v-model="v">
+        <select v-show="false" class="selectpicker" data-style="btn-white" multiple v-model="v" :disabled="disabled">
             <option v-for="option in options" :key="option.value" :value="option.value">{{option.name}}</option>
         </select>
     </div>
@@ -39,6 +39,10 @@
                 default(){
                     return []
                 }
+            },
+            disabled:{
+                type:Boolean,
+                default:false,
             }
         },
         data() {
@@ -98,5 +102,8 @@
     .bs-caret{
         position: absolute;
         right: 15px;
+    }
+    .dropdown-toggle.disabled{
+        background-color: #eee;
     }
 </style>

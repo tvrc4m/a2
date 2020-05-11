@@ -22,7 +22,6 @@
 <script>
     import iform from '@/components/form/index'
     import breadcrumb from '@/components/breadcrumb/index'
-    import { addUser,getUser,editUser } from '@/api/user'
     import { assertEmpty,assertNumber,assertLength,assertEmail,assertPhone } from '@/utils/validate'
     import { uploadImage,getImageUrl } from '@/api/upload'
     export default {

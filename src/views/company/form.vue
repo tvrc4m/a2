@@ -94,12 +94,9 @@
             }
         },
         mounted(){
-            if(this.$route.params.id){
-                this.add=false
-                getCompany(this.$route.params.id).then(data=>{
-                    this.company=data
-                })
-            }
+            getCompany().then(data=>{
+                this.company=data
+            })
             getAllServices().then(data=>{
                 this.services=data.map(item=>{
                     return {
@@ -110,15 +107,11 @@
             })
             this.breadcrumbs=[
                 {
-                    name:"医院/政府",
+                    name:"企业详情",
                     route:""
                 },
                 {
-                    name:"医院列表",
-                    route:{name:"company"}
-                },
-                {
-                    name:this.add?"新增":"编辑",
+                    name:"企业信息",
                 }
             ]
         }

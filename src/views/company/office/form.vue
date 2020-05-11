@@ -30,13 +30,14 @@
         data(){
             return {
                 office:{},
-                company:{},
-                company_id:null,
                 add:true,
                 breadcrumbs:[
                     {
-                        name:"医院/政府",
+                        name:"科室管理",
                         route:""
+                    },
+                    {
+                        name:this.add?"新增":"编辑",
                     }
                 ],
                 rules:[],
@@ -52,12 +53,12 @@
                 if(this.add){
                     addOffice(this.office).then(data=>{
                         this.$message.success("添加成功")
-                        this.$router.push({name:"company_office"})
+                        this.$router.push({name:"office"})
                     })
                 }else{
-                    editOffice(this.office).then(()=>{
+                    editOffice(this.office.id, this.office).then(()=>{
                         this.$message.success("编辑成功")
-                        this.$router.push({name:"company_office"})
+                        this.$router.push({name:"office"})
                     })
                 }
                 console.log(this.office)
@@ -70,21 +71,6 @@
                     this.office=data
                 })
             }
-            this.company_id=this.$route.params.cid
-            getCompany(this.company_id).then(data=>{
-                this.company=data
-                this.breadcrumbs.push({
-                    name: this.company.name,
-                    route:{name:"company"}
-                })
-                this.breadcrumbs.push({
-                    name: "科室管理",
-                    route:{name:"company_office",params:{cid:this.company_id}}
-                })
-                this.breadcrumbs.push({
-                    name: this.add?"新增":"编辑",
-                })
-            })
         }
     }
 </script>

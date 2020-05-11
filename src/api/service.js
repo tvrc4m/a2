@@ -1,11 +1,11 @@
 import req from '@/utils/request'
 
 export function getAllServices(){
-    return req.get("/admin/services")
+    return req.get("/company/services")
 }
 
 export function getServices(page=1,limit=20){
-    return req.get("/admin/service",{
+    return req.get("/company/service",{
         params:{
             page,limit
         }
@@ -13,15 +13,15 @@ export function getServices(page=1,limit=20){
 }
 
 export function getService(service_id){
-    return req.get(`/admin/service/${service_id}`)
+    return req.get(`/company/service/${service_id}`)
 }
 
 export function getServiceDetail(alias){
-    return req.get(`/admin/service/${alias}`)   
+    return req.get(`/company/service/${alias}`)   
 }
 
 export function getServiceCompany(service_alias,page=1,limit=20){
-    return req.get(`/admin/service/${service_alias}`,{
+    return req.get(`/company/service/${service_alias}`,{
         params:{
             page,limit
         }
@@ -29,11 +29,11 @@ export function getServiceCompany(service_alias,page=1,limit=20){
 }
 
 export function addService(service){
-    return req.post(`/admin/service`,service)
+    return req.post(`/company/service`,service)
 }
 
 export function editService(service){
-    return req.put(`/admin/service/${service.id}`,{
+    return req.put(`/company/service/${service.id}`,{
         id:service.id,
         name:service.name,
         remark:service.remark
@@ -41,5 +41,5 @@ export function editService(service){
 }
 
 export function delService(service_id){
-    return req.delete(`/admin/service/${service_id}`)
+    return req.delete(`/company/service/${service_id}`)
 }
